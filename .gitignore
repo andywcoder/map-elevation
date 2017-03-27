@@ -1,0 +1,12 @@
+/.vs
+/Santolibre.Map.Elevation.Lib/*.user
+/Santolibre.Map.Elevation.Lib/bin
+/Santolibre.Map.Elevation.Lib/obj
+/Santolibre.Map.Elevation.WebService/*.log
+/Santolibre.Map.Elevation.WebService/*.user
+/Santolibre.Map.Elevation.WebService/Properties/PublishProfiles/*.pubxml
+/Santolibre.Map.Elevation.WebService/Properties/PublishProfiles/*.user
+/Santolibre.Map.Elevation.WebService/bin
+/Santolibre.Map.Elevation.WebService/obj
+/Santolibre.Map.Search.CacheUtility/*.user
+/packages
