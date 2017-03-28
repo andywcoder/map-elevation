@@ -10,3 +10,6 @@
 /Santolibre.Map.Elevation.WebService/obj
 /Santolibre.Map.Search.CacheUtility/*.user
 /packages
+/Santolibre.Map.Elevation.LibTest/bin/Debug
+/Santolibre.Map.Elevation.LibTest/obj/Debug
+/TestResults
