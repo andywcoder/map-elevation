@@ -153,7 +153,7 @@ namespace Santolibre.Map.Elevation.Lib.Services
 
         private DigitalElevationModelType? GetElevations(List<Node> nodes)
         {
-            var dataPath = _configurationService.GetValue("demFolder");
+            var dataPath = _configurationService.GetValue("DemDataFolder");
 
             Dictionary<string, object> cache;
             if (_cacheService.GetValue("SRTM") != null)
@@ -275,6 +275,15 @@ namespace Santolibre.Map.Elevation.Lib.Services
                             break;
                     }
                 }
+
+                var totalDistance = 0f;
+                for (var i = 1; i < nodes.Count; i++)
+                {
+                    var distance = nodes[i - 1].GetDistanceToNode(nodes[i]);
+                    totalDistance += distance;
+                    nodes[i].Distance = totalDistance;
+                }
+
                 return demType.Value;
             }
             else

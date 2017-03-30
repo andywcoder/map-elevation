@@ -16,42 +16,52 @@ namespace Santolibre.Map.Elevation.Lib.Services
         private List<SrtmRectangle> GetHGTRectangles(int fileSize)
         {
             var rectangles = new List<SrtmRectangle>();
-            var dataPath = _configurationService.GetValue("demFolder");
-            var files = Directory.GetFiles(dataPath, "*.hgt");
-            foreach (var file in files)
+            var dataPath = _configurationService.GetValue("DemDataFolder");
+
+            if (Directory.Exists(dataPath))
             {
-                var filename = file.Substring(file.LastIndexOf('\\') + 1).ToUpper();
-                var fileInfo = new FileInfo(file);
-                if (fileInfo.Length == fileSize)
+                var files = Directory.GetFiles(dataPath, "*.hgt");
+                foreach (var file in files)
                 {
-                    var latDir = filename.Substring(0, 1);
-                    var minLat = int.Parse(filename.Substring(1, 2));
-                    var lonDir = filename.Substring(3, 1);
-                    var minLon = int.Parse(filename.Substring(4, 3));
-                    if (latDir == "S")
-                        minLat *= -1;
-                    if (lonDir == "W")
-                        minLon *= -1;
-                    rectangles.Add(new SrtmRectangle { Left = minLon, Right = minLon + 1, Bottom = minLat, Top = minLat + 1 });
+                    var filename = file.Substring(file.LastIndexOf('\\') + 1).ToUpper();
+                    var fileInfo = new FileInfo(file);
+                    if (fileInfo.Length == fileSize)
+                    {
+                        var latDir = filename.Substring(0, 1);
+                        var minLat = int.Parse(filename.Substring(1, 2));
+                        var lonDir = filename.Substring(3, 1);
+                        var minLon = int.Parse(filename.Substring(4, 3));
+                        if (latDir == "S")
+                            minLat *= -1;
+                        if (lonDir == "W")
+                            minLon *= -1;
+                        rectangles.Add(new SrtmRectangle { FileFormat = "hgt", Resolution = fileSize == HGT.HGT3601 ? "1 arc-second" : "3 arc-seconds", Left = minLon, Right = minLon + 1, Bottom = minLat, Top = minLat + 1 });
+                    }
                 }
             }
+
             return rectangles;
         }
 
         private List<SrtmRectangle> GetGeoTiffRectangles()
         {
             var rectangles = new List<SrtmRectangle>();
-            var dataPath = _configurationService.GetValue("demFolder");
-            var files = Directory.GetFiles(dataPath, "*.tif");
-            foreach (var file in files)
+            var dataPath = _configurationService.GetValue("DemDataFolder");
+
+            if (Directory.Exists(dataPath))
             {
-                var filename = file.Substring(file.LastIndexOf('\\') + 1);
-                var latIndex = int.Parse(filename.Substring(8, 2));
-                var lonIndex = int.Parse(filename.Substring(5, 2));
-                var lat = 60 - (latIndex * 5);
-                var lon = (lonIndex - 37) * 5;
-                rectangles.Add(new SrtmRectangle { Left = lon, Right = lon + 5, Bottom = lat, Top = lat + 5 });
+                var files = Directory.GetFiles(dataPath, "*.tif");
+                foreach (var file in files)
+                {
+                    var filename = file.Substring(file.LastIndexOf('\\') + 1);
+                    var latIndex = int.Parse(filename.Substring(8, 2));
+                    var lonIndex = int.Parse(filename.Substring(5, 2));
+                    var lat = 60 - (latIndex * 5);
+                    var lon = (lonIndex - 37) * 5;
+                    rectangles.Add(new SrtmRectangle { FileFormat = "geotiff", Resolution = "3 arc-second", Left = lon, Right = lon + 5, Bottom = lat, Top = lat + 5 });
+                }
             }
+
             return rectangles;
         }
 

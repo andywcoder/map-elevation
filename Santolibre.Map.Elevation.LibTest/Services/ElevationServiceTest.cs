@@ -62,7 +62,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             // Arrange
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
-            configurationService.Setup(x => x.GetValue("demFolder")).Returns(TestContext.DeploymentDirectory);
+            configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
             var nodes = ReadNodes(Path.Combine(TestContext.DeploymentDirectory, "elevation_profile_1.gpx"));
 
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
@@ -84,7 +84,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             // Arrange
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
-            configurationService.Setup(x => x.GetValue("demFolder")).Returns(TestContext.DeploymentDirectory);
+            configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
             var nodes = ReadNodes(Path.Combine(TestContext.DeploymentDirectory, "elevation_profile_1.gpx"));
 
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
@@ -106,7 +106,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             // Arrange
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
-            configurationService.Setup(x => x.GetValue("demFolder")).Returns(TestContext.DeploymentDirectory);
+            configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
             var nodes = ReadNodes(Path.Combine(TestContext.DeploymentDirectory, "elevation_profile_1.gpx"));
 
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
@@ -128,7 +128,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             // Arrange
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
-            configurationService.Setup(x => x.GetValue("demFolder")).Returns(TestContext.DeploymentDirectory);
+            configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
             var nodes = ReadNodes(Path.Combine(TestContext.DeploymentDirectory, "elevation_below_sea_level_route.gpx"));
 
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);

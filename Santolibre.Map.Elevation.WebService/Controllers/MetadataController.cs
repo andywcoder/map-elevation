@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace Santolibre.Map.Elevation.WebService.Controllers
 {
-    [RoutePrefix("api/v1/metadata")]
+    [RoutePrefix("api/v1")]
     public class MetadataController : ApiController
     {
         private readonly IMetadataService _metadataService;
@@ -15,15 +15,13 @@ namespace Santolibre.Map.Elevation.WebService.Controllers
             _metadataService = metadataService;
         }
 
-        [Route("{srtmType}")]
+        [Route("metadata")]
         [HttpGet]
-        public List<SrtmRectangle> Metadata(string srtmType)
+        public List<SrtmRectangle> Metadata()
         {
-            List<SrtmRectangle> srtmRectangles = new List<SrtmRectangle>();
-            if (srtmType == "srtm1")
-                srtmRectangles = _metadataService.GetSRTM1Rectangles();
-            else if (srtmType == "srtm3")
-                srtmRectangles = _metadataService.GetSRTM3Rectangles();
+            var srtmRectangles = new List<SrtmRectangle>();
+            srtmRectangles.AddRange(_metadataService.GetSRTM1Rectangles());
+            srtmRectangles.AddRange(_metadataService.GetSRTM3Rectangles());
             return srtmRectangles;
         }
     }
