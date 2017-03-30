@@ -21,7 +21,7 @@ An elevation service that uses DEM data in the HGT or GeoTIFF format.
 
 ### Response
 
-rangeElevations: an array of [distance, elevation]
+rangeElevations: array of [distance, elevation]
 
 ```
 {
