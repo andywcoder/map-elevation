@@ -1,5 +1,4 @@
-﻿using Santolibre.Map.Elevation.Lib;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace Santolibre.Map.Elevation.WebService
 {

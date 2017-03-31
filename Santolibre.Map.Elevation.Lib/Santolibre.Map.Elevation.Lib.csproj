@@ -69,12 +69,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
     <Compile Include="DependencyFactory.cs" />
     <Compile Include="FloatExtensions.cs" />
     <Compile Include="GooglePoints.cs" />
     <Compile Include="Models\DigitalElevationModelType.cs" />
-    <Compile Include="Models\ElevationResponse.cs" />
     <Compile Include="Models\HGT.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\SmoothingMode.cs" />

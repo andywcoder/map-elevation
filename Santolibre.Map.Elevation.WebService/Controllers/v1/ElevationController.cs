@@ -1,13 +1,13 @@
 ﻿using Santolibre.Map.Elevation.Lib;
-using Santolibre.Map.Elevation.Lib.Models;
 using Santolibre.Map.Elevation.Lib.Services;
+using Santolibre.Map.Elevation.WebService.Controllers.v1.Models;
 using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Santolibre.Map.Elevation.WebService.Controllers
+namespace Santolibre.Map.Elevation.WebService.Controllers.v1
 {
     [RoutePrefix("api/v1")]
     public class ElevationController : ApiController
@@ -31,7 +31,7 @@ namespace Santolibre.Map.Elevation.WebService.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
 
-                var elevationModelType = _elevationService.GetElevations(points, SmoothingMode.None, 10000);
+                var elevationModelType = _elevationService.GetElevations(points, Lib.Models.SmoothingMode.None, 10000);
 
                 if (elevationModelType.HasValue)
                 {
