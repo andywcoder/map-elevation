@@ -10,7 +10,7 @@ namespace Santolibre.Map.Elevation.WebService
 
             var config = new MapperConfiguration(x =>
             {
-                x.CreateMap<Elevation.Lib.Models.SrtmRectangle, Elevation.WebService.Controllers.v1.Models.SrtmRectangle>();
+                x.CreateMap<Lib.Models.SrtmRectangle, Controllers.v1.Models.SrtmRectangle>();
             });
 
             config.AssertConfigurationIsValid();
