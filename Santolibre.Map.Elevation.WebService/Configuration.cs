@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.InterceptionExtension;
 using NLog;
 using Santolibre.Map.Elevation.Lib;
 using Santolibre.Map.Elevation.Lib.Services;
@@ -14,10 +15,16 @@ namespace Santolibre.Map.Elevation.WebService
         {
             Logger.Trace("Setting up services");
 
-            DependencyFactory.Container.RegisterType<IConfigurationService, ConfigurationService>();
-            DependencyFactory.Container.RegisterType<ICacheService, CacheService>();
-            DependencyFactory.Container.RegisterType<IMetadataService, MetadataService>();
-            DependencyFactory.Container.RegisterType<IElevationService, ElevationService>();
+            DependencyFactory.Container.AddNewExtension<Interception>();
+
+            DependencyFactory.Container.RegisterType<IConfigurationService, ConfigurationService>(
+                new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            DependencyFactory.Container.RegisterType<ICacheService, CacheService>(
+                new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            DependencyFactory.Container.RegisterType<IMetadataService, MetadataService>(
+                new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            DependencyFactory.Container.RegisterType<IElevationService, ElevationService>(
+                new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
             DependencyFactory.Container.RegisterInstance<IMapper>(AutoMapper.CreateMapper());
         }
     }

@@ -28,23 +28,22 @@ namespace Santolibre.Map.Elevation.WebService.Controllers.v1
                 var points = GooglePoints.Decode(encodedPoints).ToList();
                 if (!points.Any())
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, new { Error = "Couldn't decode points" });
                 }
 
                 var elevationModelType = _elevationService.GetElevations(points, Lib.Models.SmoothingMode.None, 10000);
-
                 if (elevationModelType.HasValue)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new ElevationResponse() { RangeHeight = points.Select(x => new float[] { (float)Math.Round(x.Distance * 1000), (float)Math.Round(x.Elevation, 1) }).ToList() });
                 }
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, new { Error = "No elevation data for this area" });
                 }
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Error = "Query parameter encodedPoints missing" });
             }
         }
     }

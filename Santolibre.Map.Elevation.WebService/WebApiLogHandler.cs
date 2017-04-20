@@ -36,7 +36,7 @@ namespace Santolibre.Map.Elevation.WebService
                 var logLevel = ((int)response.StatusCode).ToString().StartsWith("5") ? LogLevel.Error : LogLevel.Info;
                 var logMessage = "Response StatusCode=" + response.StatusCode + ", ReasonPhrase=" + response.ReasonPhrase;
 
-                Logger.Log(logLevel, logMessage);
+                Logger.Log(logLevel, logMessage, task.Exception);
 
                 return response;
             }, cancellationToken);
