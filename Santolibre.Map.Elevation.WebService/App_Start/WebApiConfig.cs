@@ -10,7 +10,7 @@ namespace Santolibre.Map.Elevation.WebService
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("http://local.map.santolibre.net,http://map.santolibre.net", "*", "*");
+            var cors = new EnableCorsAttribute("http://local.map.santolibre.net,https://map.santolibre.net", "*", "*");
             config.EnableCors(cors);
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
