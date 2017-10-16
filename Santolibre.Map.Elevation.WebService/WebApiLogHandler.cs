@@ -14,17 +14,12 @@ namespace Santolibre.Map.Elevation.WebService
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var url = request.RequestUri.PathAndQuery;
-
             if (request.Content != null)
             {
                 await request.Content.ReadAsStringAsync().ContinueWith(task =>
                 {
-                    string logMessage;
-                    string headerJson = null;
-
-                    headerJson = SerializeHeaders(request.Headers);
-                    logMessage = request.Method + " " + url + ", Header=" + headerJson + ", Body=" + task.Result;
+                    var headerJson = SerializeHeaders(request.Headers);
+                    var logMessage = request.Method + " " + request.RequestUri.PathAndQuery + ", Header=" + headerJson + ", Body=" + task.Result;
 
                     Logger.Trace(logMessage);
                 }, cancellationToken);
