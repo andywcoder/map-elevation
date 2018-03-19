@@ -59,8 +59,9 @@ namespace Santolibre.Map.Elevation.Lib.Services
             var fx = node.Longitude - (int)(node.Longitude);
             var fy = node.Latitude - (int)(node.Latitude);
 
-            var elevation = (h1 * (1 - fx) + h2 * fx) * (1 - fy) + (h3 * (1 - fx) + h4 * fx) * fy;
-            node.Elevation = (float)Math.Round(elevation);
+            var elevation = (int)Math.Round((h1 * (1 - fx) + h2 * fx) * (1 - fy) + (h3 * (1 - fx) + h4 * fx) * fy);
+            
+			node.Elevation = elevation < -1000 ? 0 : elevation;
         }
 
         private void GetGeoTiffValue(Node node, Dictionary<string, object> cache)
@@ -75,11 +76,7 @@ namespace Santolibre.Map.Elevation.Lib.Services
             var x = (int)Math.Round((node.Longitude - (5.0 / 6000) - minLon) / (5.0 / 6000));
             var y = (int)Math.Round((maxLat - node.Latitude) / (5.0 / 6000));
 
-            //node.Elevation = Math.Max((Int16)0, pixels[y*6000 + x]);
-            node.Elevation = pixels[y * 6000 + x];
-
-            if (node.Elevation < -1000)
-                node.Elevation = 0;
+            node.Elevation = node.Elevation < -1000 ? 0 : pixels[y * 6000 + x];
         }
 
         private string GetHGTFilename(double lat, double lon, out int latAdj, out int lonAdj)
