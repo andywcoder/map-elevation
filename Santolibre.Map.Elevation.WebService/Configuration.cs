@@ -19,12 +19,11 @@ namespace Santolibre.Map.Elevation.WebService
 
             DependencyFactory.Container.RegisterType<IConfigurationService, ConfigurationService>(
                 new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
-            DependencyFactory.Container.RegisterType<ICacheService, CacheService>(
-                new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
             DependencyFactory.Container.RegisterType<IMetadataService, MetadataService>(
                 new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
             DependencyFactory.Container.RegisterType<IElevationService, ElevationService>(
                 new Interceptor<InterfaceInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            DependencyFactory.Container.RegisterInstance<ICacheService>(new CacheService());
             DependencyFactory.Container.RegisterInstance<IMapper>(AutoMapper.CreateMapper());
         }
     }

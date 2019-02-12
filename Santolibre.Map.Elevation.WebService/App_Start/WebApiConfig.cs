@@ -17,6 +17,7 @@ namespace Santolibre.Map.Elevation.WebService
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml"));
             config.DependencyResolver = new ApiControllerDependencyResolver();
+            config.Filters.Add(new ValidateModelActionFilterAttribute());
             config.MessageHandlers.Add(new WebApiLogHandler());
             config.MapHttpAttributeRoutes();
         }

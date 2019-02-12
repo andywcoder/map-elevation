@@ -60,6 +60,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
         public void GetElevations_NodesNoSmoothing_SRTM1()
         {
             // Arrange
+            var maxNodes = 10000;
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
             configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
@@ -68,7 +69,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
 
             // Act
-            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.None, 10000);
+            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.None, maxNodes);
 
             // Assert
             Assert.AreEqual(DigitalElevationModelType.SRTM1, digitalElevationModelType);
@@ -82,6 +83,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
         public void GetElevations_NodesWindowSmooth_SRTM1()
         {
             // Arrange
+            var maxNodes = 10000;
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
             configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
@@ -90,7 +92,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
 
             // Act
-            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.WindowSmooth, 10000);
+            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.WindowSmooth, maxNodes);
 
             // Assert
             Assert.AreEqual(DigitalElevationModelType.SRTM1, digitalElevationModelType);
@@ -104,6 +106,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
         public void GetElevations_NodesFeedbackSmooth_SRTM1()
         {
             // Arrange
+            var maxNodes = 10000;
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
             configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
@@ -112,7 +115,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
 
             // Act
-            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.FeedbackSmooth, 10000);
+            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.FeedbackSmooth, maxNodes);
 
             // Assert
             Assert.AreEqual(DigitalElevationModelType.SRTM1, digitalElevationModelType);
@@ -123,9 +126,10 @@ namespace Santolibre.Map.Elevation.LibTest.Services
 
         [TestMethod]
         [DeploymentItem("Test_Data/elevation_below_sea_level_route.gpx")]
-        public void GetElevations_NodesWithBelowSeaLevelElevationsNoSmoothing_SRTM1()
+        public void GetElevations_NodesWithBelowSeaLevelElevationsNoSmoothing_SRTM3()
         {
             // Arrange
+            var maxNodes = 10000;
             var cacheService = new Mock<ICacheService>();
             var configurationService = new Mock<IConfigurationService>();
             configurationService.Setup(x => x.GetValue("DemDataFolder")).Returns(TestContext.DeploymentDirectory);
@@ -134,7 +138,7 @@ namespace Santolibre.Map.Elevation.LibTest.Services
             var elevationService = new ElevationService(cacheService.Object, configurationService.Object);
 
             // Act
-            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.None, 10000);
+            var digitalElevationModelType = elevationService.GetElevations(nodes, SmoothingMode.None, maxNodes);
 
             // Assert
             Assert.AreEqual(DigitalElevationModelType.SRTM3, digitalElevationModelType);

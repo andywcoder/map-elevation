@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Santolibre.Map.Elevation.Lib.Services;
-using Santolibre.Map.Elevation.WebService.Controllers.v1.Models;
+using Santolibre.Map.Elevation.WebService.ApiControllers.v1.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Santolibre.Map.Elevation.WebService.Controllers.v1
+namespace Santolibre.Map.Elevation.WebService.ApiControllers.v1
 {
     [RoutePrefix("api/v1")]
     public class MetadataController : ApiController

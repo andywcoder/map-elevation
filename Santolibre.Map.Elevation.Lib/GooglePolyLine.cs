@@ -5,13 +5,11 @@ using System.Text;
 
 namespace Santolibre.Map.Elevation.Lib
 {
-    public static class GooglePoints
+    public static class GooglePolyline
     {
         /// <summary>
-        /// Decode google style polyline coordinates.
+        /// Decode google style polyline coordinates
         /// </summary>
-        /// <param name="encodedPoints"></param>
-        /// <returns></returns>
         public static IEnumerable<Node> Decode(string encodedPoints)
         {
             if (string.IsNullOrEmpty(encodedPoints))
@@ -28,7 +26,7 @@ namespace Santolibre.Map.Elevation.Lib
 
             while (index < polylineChars.Length)
             {
-                // calculate next latitude
+                // Calculate next latitude
                 sum = 0;
                 shifter = 0;
                 do
@@ -43,7 +41,7 @@ namespace Santolibre.Map.Elevation.Lib
 
                 currentLat += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
 
-                //calculate next longitude
+                // Calculate next longitude
                 sum = 0;
                 shifter = 0;
                 do
@@ -67,10 +65,8 @@ namespace Santolibre.Map.Elevation.Lib
         }
 
         /// <summary>
-        /// Encode it
+        /// Encode google style polyline coordinates
         /// </summary>
-        /// <param name="points"></param>
-        /// <returns></returns>
         public static string Encode(IEnumerable<Node> points)
         {
             var str = new StringBuilder();

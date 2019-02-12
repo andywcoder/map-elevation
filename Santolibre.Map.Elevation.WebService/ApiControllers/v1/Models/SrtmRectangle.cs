@@ -1,4 +1,4 @@
-﻿namespace Santolibre.Map.Elevation.WebService.Controllers.v1.Models
+﻿namespace Santolibre.Map.Elevation.WebService.ApiControllers.v1.Models
 {
     public class SrtmRectangle
     {

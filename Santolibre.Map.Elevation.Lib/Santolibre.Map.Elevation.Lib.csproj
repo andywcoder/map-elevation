@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BitMiracle.LibTiff.NET, Version=2.4.626.0, Culture=neutral, PublicKeyToken=53879b3e20e7a7d6, processorArchitecture=MSIL">
+      <HintPath>..\packages\BitMiracle.LibTiff.NET.2.4.626\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -75,7 +78,7 @@
   <ItemGroup>
     <Compile Include="DependencyFactory.cs" />
     <Compile Include="FloatExtensions.cs" />
-    <Compile Include="GooglePoints.cs" />
+    <Compile Include="GooglePolyline.cs" />
     <Compile Include="LoggingInterceptionBehavior.cs" />
     <Compile Include="Models\DigitalElevationModelType.cs" />
     <Compile Include="Models\HGT.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Services\IElevationService.cs" />
     <Compile Include="Services\IMetadataService.cs" />
     <Compile Include="Services\MetadataService.cs" />
+    <Compile Include="Models\GeoTiff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

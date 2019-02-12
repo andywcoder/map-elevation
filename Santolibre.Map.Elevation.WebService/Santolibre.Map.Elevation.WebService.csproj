@@ -22,6 +22,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -117,17 +118,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllerDependencyResolver.cs" />
+    <Compile Include="ApiControllers\v1\Models\ElevationQuery.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutoMapper.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Controllers\v1\MetadataController.cs" />
-    <Compile Include="Controllers\v1\ElevationController.cs" />
-    <Compile Include="Controllers\v1\Models\ElevationResponse.cs" />
-    <Compile Include="Controllers\v1\Models\SrtmRectangle.cs" />
+    <Compile Include="ApiControllers\v1\MetadataController.cs" />
+    <Compile Include="ApiControllers\v1\ElevationController.cs" />
+    <Compile Include="ApiControllers\v1\Models\ElevationResponse.cs" />
+    <Compile Include="ApiControllers\v1\Models\SrtmRectangle.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidateModelActionFilterAttribute.cs" />
     <Compile Include="WebApiLogHandler.cs" />
   </ItemGroup>
   <ItemGroup>
