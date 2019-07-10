@@ -2,7 +2,7 @@
 
 An elevation service that uses DEM data in the HGT or GeoTIFF format.
 
-This is the ASP.NET Web API 2 version, for the ASP.NET Core MVC version go to https://github.com/Andy9FromSpace/map-elevation-core
+**This is the ASP.NET Web API 2 version, which isn't maintained anymore. For the latest version please check out the ASP.NET Core MVC version at https://github.com/Andy9FromSpace/map-elevation-core**
 
 ## API
 
